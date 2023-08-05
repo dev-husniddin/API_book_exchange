@@ -1,0 +1,142 @@
+Техническое задание (ТЗ) для проекта API "Book Exchange":
+
+Введение:
+Проект "Book Exchange" представляет собой RESTful API, предназначенный для обмена, продажи и аренды книг между пользователями. API позволяет пользователям добавлять свои книги в систему для обмена или продажи, а также искать и выбирать книги для покупки, аренды или обмена. Пользователи могут также добавлять книги в список избранного, оставлять отзывы о других пользователях и книгах, а также просматривать свои заказы и историю активности.
+
+Функциональные требования:
+
+2.1 Регистрация и аутентификация:
+
+Пользователи могут зарегистрироваться, предоставив имя пользователя, электронную почту и пароль.
+Пользователи могут войти в систему, используя свои учетные данные.
+2.2 Профиль пользователя:
+
+Пользователи могут добавлять информацию о себе, включая фотографию профиля и краткую биографию.
+Пользователи могут указать предпочтения книг и категории, чтобы получать персонализированные рекомендации.
+2.3 Книги:
+
+Пользователи могут добавлять книги в систему для продажи, аренды или обмена.
+Каждая книга имеет уникальный идентификатор, название, автора, описание, издательство, год издания, обложку и другие характеристики.
+Книги могут быть различных форматов: печатные, электронные или аудиокниги.
+2.4 Категории и авторы:
+
+Каждая книга может принадлежать одной или нескольким категориям (жанрам).
+Каждая книга может иметь одного или несколько авторов.
+2.5 Заказы и обмены:
+
+Пользователи могут оформлять заказы на покупку или аренду книг.
+Пользователи могут предлагать обмен своих книг на книги других пользователей.
+Каждый заказ или обмен имеет статус (в обработке, выполнен, отменен).
+2.6 Избранное:
+
+Пользователи могут добавлять книги в свой список избранного для последующего просмотра или покупки.
+2.7 Отзывы:
+
+Пользователи могут оставлять отзывы о других пользователях и книгах.
+Отзывы содержат рейтинг и комментарий.
+2.8 Поиск и фильтрация:
+
+Пользователи могут искать книги по различным критериям, таким как название, автор, категория и др.
+Пользователи могут фильтровать результаты поиска по формату книги, цене и т. д.
+Нефункциональные требования:
+
+3.1 Безопасность:
+
+API должен обеспечивать защищенную передачу данных по HTTPS.
+Для аутентификации пользователя должен использоваться токен доступа (JWT).
+API должен применять ограничения доступа к различным ресурсам в зависимости от прав пользователя.
+3.2 Производительность:
+
+API должен быть оптимизирован для обработки большого количества запросов и пользователей.
+Запросы должны обрабатываться быстро и эффективно.
+3.3 Масштабируемость:
+
+Система должна быть легко масштабируема для обеспечения устойчивой работы при увеличении числа пользователей и книг.
+3.4 Документация:
+
+API должен быть хорошо задокументирован, чтобы разработчики могли легко использовать его функциональность.
+3.5 Тестирование:
+
+API должен быть хорошо протестирован для обеспечения надежной работы.
+Должны быть предусмотрены модульные тесты, интеграционные тесты и тесты производительности.
+3.6 Интерфейс:
+
+API должен предоставлять данные в формате JSON.
+Должны быть предусмотрены удобные и понятные ошибки для неправильных запросов.
+Ограничения:
+
+API не будет обрабатывать платежные транзакции. Платежи будут проводиться внешними платежными системами.
+API не будет обеспечивать возможность скачивания контента (книг) напрямую. Ссылки на скачивание будут предоставляться отдельно.
+
+------------------------------------------------------
+-----------------------------------------------------
+
+Technical Specification (TS) for the "Book Exchange" API Project:
+
+Introduction:
+The "Book Exchange" project is a RESTful API designed for book exchange, sale, and rental between users. The API allows users to add their books to the system for exchange or sale, as well as search and choose books for purchase, rental, or exchange. Users can also add books to their favorites list, leave reviews for other users and books, and view their orders and activity history.
+
+Functional Requirements:
+
+2.1 Registration and Authentication:
+
+Users can register by providing a username, email, and password.
+Users can log in using their credentials.
+2.2 User Profile:
+
+Users can add information about themselves, including a profile picture and a short biography.
+Users can specify book preferences and categories to receive personalized recommendations.
+2.3 Books:
+
+Users can add books to the system for sale, rental, or exchange.
+Each book has a unique identifier, title, author, description, publisher, publication year, cover, and other characteristics.
+Books can be in different formats: print, electronic, or audiobooks.
+2.4 Categories and Authors:
+
+Each book can belong to one or several categories (genres).
+Each book can have one or several authors.
+2.5 Orders and Exchanges:
+
+Users can place orders to purchase or rent books.
+Users can propose exchanges of their books for books of other users.
+Each order or exchange has a status (processing, completed, canceled).
+2.6 Favorites:
+
+Users can add books to their favorites list for future viewing or purchase.
+2.7 Reviews:
+
+Users can leave reviews for other users and books.
+Reviews include a rating and a comment.
+2.8 Search and Filtering:
+
+Users can search for books based on various criteria, such as title, author, category, etc.
+Users can filter search results by book format, price, etc.
+Non-Functional Requirements:
+
+3.1 Security:
+
+The API must provide secure data transmission over HTTPS.
+User authentication must be done using an access token (JWT).
+The API should enforce access restrictions to different resources based on user permissions.
+3.2 Performance:
+
+The API should be optimized to handle a large number of requests and users.
+Requests should be processed quickly and efficiently.
+3.3 Scalability:
+
+The system should be easily scalable to ensure stable operation with an increasing number of users and books.
+3.4 Documentation:
+
+The API should be well-documented to enable developers to easily use its functionality.
+3.5 Testing:
+
+The API should be thoroughly tested to ensure reliable operation.
+Module tests, integration tests, and performance tests should be provided.
+3.6 Interface:
+
+The API should provide data in JSON format.
+Convenient and understandable error messages should be provided for incorrect requests.
+Constraints:
+
+The API will not handle payment transactions. Payments will be processed by external payment systems.
+The API will not provide the ability to download content (books) directly. Download links will be provided separately.
