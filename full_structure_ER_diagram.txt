@@ -1,0 +1,127 @@
+
+Таблица "Book":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора книги)
+title: VARCHAR(255) (название книги)
+author: VARCHAR(255) (автор книги)
+publisher: VARCHAR(255) (издательство)
+publication_year: INTEGER (год издания)
+description: TEXT (описание книги)
+cover_image: VARCHAR(255) (путь к изображению обложки)
+selling_price: DECIMAL(10, 2) (цена продажи)
+rental_price: DECIMAL(10, 2) (цена аренды)
+format: VARCHAR(50) (формат книги)
+availability_status: BOOLEAN (статус доступности: true/false)
+isbn: VARCHAR(20) (международный стандартный номер книги)
+rating: DECIMAL(3, 1) (рейтинг книги)
+page_count: INTEGER (количество страниц)
+language: VARCHAR(50) (язык книги)
+
+Таблица "User":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора пользователя)
+username: VARCHAR(50) (имя пользователя)
+email: VARCHAR(100) (электронная почта пользователя)
+password: VARCHAR(255) (хэш пароля пользователя)
+first_name: VARCHAR(50) (имя пользователя)
+last_name: VARCHAR(50) (фамилия пользователя)
+profile_image: VARCHAR(255) (путь к изображению профиля)
+bio: TEXT (биография пользователя)
+preferences: JSON (предпочтения пользователя, хранятся в формате JSON)
+registration_date: TIMESTAMP (дата и время регистрации пользователя)
+activation_status: BOOLEAN (статус активации аккаунта: true/false)
+
+Таблица "Category":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора категории)
+name: VARCHAR(50) (название категории)
+description: TEXT (описание категории)
+
+Таблица "Author":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора автора)
+name: VARCHAR(100) (имя автора)
+biography: TEXT (биография автора)
+
+Таблица "Order":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора заказа)
+book_id: INTEGER REFERENCES "Book"(id) (внешний ключ на книгу)
+user_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя)
+order_type: VARCHAR(20) (тип заказа: "Purchase", "Rental" или "Exchange")
+order_date: TIMESTAMP (дата и время заказа)
+order_status: VARCHAR(20) (статус заказа)
+quantity: INTEGER (количество книг в заказе)
+delivery_address_id: INTEGER REFERENCES "ShippingAddress"(id) (внешний ключ на адрес доставки)
+
+Таблица "Exchange":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора обмена)
+book_offered_id: INTEGER REFERENCES "Book"(id) (внешний ключ на предлагаемую книгу)
+book_requested_id: INTEGER REFERENCES "Book"(id) (внешний ключ на желаемую книгу)
+user_offering_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя, предлагающего обмен)
+user_requesting_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя, желающего получить книгу в обмен)
+exchange_status: VARCHAR(20) (статус обмена)
+start_date: DATE (дата начала обмена)
+end_date: DATE (дата окончания обмена)
+
+Таблица "Favorites":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора записи в избранном)
+user_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя)
+book_id: INTEGER REFERENCES "Book"(id) (внешний ключ на книгу)
+
+Таблица "Audiobook":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора аудиокниги)
+book_id: INTEGER REFERENCES "Book"(id) (внешний ключ на книгу)
+audio_file: VARCHAR(255) (путь к файлу с аудиокнигой)
+duration: TIME (продолжительность аудиокниги)
+
+Таблица "Ebook":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора электронной книги)
+book_id: INTEGER REFERENCES "Book"(id) (внешний ключ на книгу)
+file: VARCHAR(255) (путь к файлу с электронной книгой)
+
+Таблица "UserReview":
+
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора отзыва)
+user_reviewed_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя, о котором написан отзыв)
+user_reviewer_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя, оставившего отзыв)
+rating: DECIMAL(2, 1) (оценка)
+comment: TEXT (комментарий)
+
+Таблица "ShippingAddress":
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора адреса доставки)
+user_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя)
+address_line1: VARCHAR(255) (первая строка адреса)
+address_line2: VARCHAR(255) (вторая строка адреса)
+city: VARCHAR(100) (город)
+state: VARCHAR(100) (штат)
+country: VARCHAR(100) (страна)
+postal_code: VARCHAR(20) (почтовый индекс)
+
+Таблица "CategoryBook" (дополнительная таблица для связи многие-ко-многим между категориями и книгами):
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора записи)
+category_id: INTEGER REFERENCES "Category"(id) (внешний ключ на категорию)
+book_id: INTEGER REFERENCES "Book"(id) (внешний ключ на книгу)
+
+Таблица "BookAuthor" (дополнительная таблица для связи многие-ко-многим между книгами и авторами):
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора записи)
+book_id: INTEGER REFERENCES "Book"(id) (внешний ключ на книгу)
+author_id: INTEGER REFERENCES "Author"(id) (внешний ключ на автора)
+
+Таблица "UserExchange" (дополнительная таблица для связи многие-ко-многим между пользователями и обменами):
+id: SERIAL PRIMARY KEY (тип данных для уникального идентификатора записи)
+user_id: INTEGER REFERENCES "User"(id) (внешний ключ на пользователя)
+exchange_id: INTEGER REFERENCES "Exchange"(id) (внешний ключ на обмен)
+Объяснение дополнительных таблиц:
+
+Таблица "CategoryBook": Эта таблица устанавливает связь многие-ко-многим между категориями и книгами. Один и тот же тип книги может принадлежать разным категориям, и одна категория может содержать несколько книг.
+
+Таблица "BookAuthor": Эта таблица устанавливает связь многие-ко-многим между книгами и авторами. Одна книга может иметь несколько авторов, и один автор может быть связан с несколькими книгами.
+
+Таблица "UserExchange": Эта таблица устанавливает связь многие-ко-многим между пользователями и обменами. Один и тот же пользователь может участвовать в различных обменах, и один обмен может включать нескольких пользователей.
+
+Эти дополнительные таблицы необходимы для правильного представления связей многие-ко-многим и помогают связать сущности между собой.
