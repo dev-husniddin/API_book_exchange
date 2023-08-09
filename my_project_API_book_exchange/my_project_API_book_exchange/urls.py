@@ -17,6 +17,39 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+
+from my_app.views import (
+    UserRegistrationView,
+    UserLoginView,
+    UserProfileView,
+    BookView,
+    CategoryView,
+    AuthorView,
+    OrderView,
+    ExchangeView,
+    FavoritesView,
+    UserReviewView,
+    ShippingAddressView,
+    # Добавьте импорты для остальных вьюшек
+)
+
+urlpatterns = [
+    path('api/register/', UserRegistrationView.as_view(), name='user-registration'),
+    path('api/login/', UserLoginView.as_view(), name='user-login'),
+    path('api/profile/', UserProfileView.as_view(), name='user-profile'),
+    path('api/books/<int:book_id>/', BookView.as_view(), name='book-detail'),
+    path('api/categories/<int:category_id>/', CategoryView.as_view(), name='category-detail'),
+    path('api/authors/<int:author_id>/', AuthorView.as_view(), name='author-detail'),
+    path('api/orders/<int:order_id>/', OrderView.as_view(), name='order-detail'),
+    path('api/exchanges/<int:exchange_id>/', ExchangeView.as_view(), name='exchange-detail'),
+    path('api/favorites/', FavoritesView.as_view(), name='favorites'),
+    path('api/reviews/', UserReviewView.as_view(), name='user-reviews'),
+    path('api/addresses/', ShippingAddressView.as_view(), name='shipping-addresses'),
+    # Добавьте URL-маршруты для остальных вьюшек
+    # ...
+]
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
